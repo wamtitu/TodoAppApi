@@ -32,8 +32,8 @@ namespace todoApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SuccessMessage>> getUsers(){
-            var users = await _userService.GetUsersAsync();
+        public async Task<ActionResult<SuccessMessage>> getUsers(string? name){
+            var users = await _userService.GetUsersAsync(name);
             return Ok(users);
         }
 

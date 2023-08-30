@@ -32,9 +32,20 @@ namespace todoApi.Services
         }
 
     
-        public async Task<IEnumerable<UserTodosDTO>> GetUsersAsync()
+        public async Task<IEnumerable<UserTodosDTO>> GetUsersAsync(string? name)
         {
-            return await _context.Users.Select(i=> new UserTodosDTO(){
+            if(string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(name)){
+                return await _context.Users.Select(i=> new UserTodosDTO(){
+                UserId = i.UserId,
+                UserName = i.UserName,
+                Email = i.Email,
+                Todos = i.Todos.Select(c=>new TodosDTO(){
+                    Title = c.Title,
+                    Description =c.Description
+                }).ToList()
+            }).ToListAsync();
+            }
+            return await _context.Users.Where(i=>i.Email.ToLower().Contains(name.ToLower())).Select(i=> new UserTodosDTO(){
                 UserId = i.UserId,
                 UserName = i.UserName,
                 Email = i.Email,

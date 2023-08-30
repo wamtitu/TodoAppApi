@@ -13,7 +13,7 @@ namespace todoApi.Services.IServices
         Task<string> UpdateUserAsync(User user);
         Task<string> DeleteUserAsync(User user);
 
-        Task<IEnumerable<UserTodosDTO>> GetUsersAsync();
+        Task<IEnumerable<UserTodosDTO>> GetUsersAsync(string? name);
         Task<User> GetOneUserAsync(Guid id);
 
         Task<UserTodosDTO> GetUserWithTodosAsync(Guid id);
