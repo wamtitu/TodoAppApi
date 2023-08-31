@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -37,7 +38,8 @@ namespace todoApi.Controllers
             if(pageSize > maxPageSize){
                 pageSize = maxPageSize;
             }
-            var todo = await _todoService.GetTodoAsync(pageSize, PageNumber);
+            var (todo, pagination) = await _todoService.GetTodoAsync(pageSize, PageNumber);
+            Response.Headers.Add("Pagination", JsonSerializer.Serialize(pagination));
             return Ok(todo);
         }
 

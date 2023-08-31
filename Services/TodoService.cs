@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using todoApi.DBConnection;
 using todoApi.Models;
 using todoApi.Requests;
+using todoApi.Responses;
 using todoApi.Services.IServices;
 
 namespace todoApi.Services
@@ -36,9 +37,14 @@ namespace todoApi.Services
            return await _context.Todos.Where(u=>u.TodoId == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Todo>> GetTodoAsync(int pageSize, int pageNumber)
+        public async Task<(List<Todo>, Pagination)> GetTodoAsync(int pageSize, int pageNumber)
         {
-            return await _context.Todos.Skip(pageSize*(pageNumber-1)).Take(pageSize).ToListAsync();
+            var totalItemCount = await _context.Todos.CountAsync();
+            var PaginationMetada = new Pagination(totalItemCount, pageSize, pageNumber);
+
+            var Todos = await _context.Todos.Skip(pageSize*(pageNumber-1)).Take(pageSize).ToListAsync();
+
+            return (Todos, PaginationMetada);
         }
 
         public async Task<string> UpdateTodoAsync(Todo newTodo)
