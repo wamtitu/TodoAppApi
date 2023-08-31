@@ -16,6 +16,7 @@ namespace todoApi.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
+        const int maxPageSize = 20;
         private readonly ITodoService _todoService;
         private readonly IMapper _imapper;
 
@@ -32,8 +33,11 @@ namespace todoApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SuccessMessage>> GetTodos(){
-            var todo = await _todoService.GetTodoAsync();
+        public async Task<ActionResult<SuccessMessage>> GetTodos(int pageSize=10, int PageNumber = 1){
+            if(pageSize > maxPageSize){
+                pageSize = maxPageSize;
+            }
+            var todo = await _todoService.GetTodoAsync(pageSize, PageNumber);
             return Ok(todo);
         }
 

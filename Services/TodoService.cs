@@ -36,9 +36,9 @@ namespace todoApi.Services
            return await _context.Todos.Where(u=>u.TodoId == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<Todo>> GetTodoAsync()
+        public async Task<List<Todo>> GetTodoAsync(int pageSize, int pageNumber)
         {
-            return await _context.Todos.ToListAsync();
+            return await _context.Todos.Skip(pageSize*(pageNumber-1)).Take(pageSize).ToListAsync();
         }
 
         public async Task<string> UpdateTodoAsync(Todo newTodo)
