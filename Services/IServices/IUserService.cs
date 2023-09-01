@@ -17,5 +17,7 @@ namespace todoApi.Services.IServices
         Task<User> GetOneUserAsync(Guid id);
 
         Task<UserTodosDTO> GetUserWithTodosAsync(Guid id);
+
+        Task<User> GetUserByEmailAsync(string email);
     }
 }

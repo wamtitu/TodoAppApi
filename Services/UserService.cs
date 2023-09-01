@@ -82,5 +82,10 @@ namespace todoApi.Services
         {
             return await _context.Users.Where(i => i.UserId == id).FirstOrDefaultAsync();
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.Where(i => i.Email == email).FirstOrDefaultAsync();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using todoApi.Models;
@@ -26,6 +27,7 @@ namespace todoApi.Controllers
             _imapper = imapper;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<SuccessMessage>> AddTodos(AddTodo newTodo){
             var todo = _imapper.Map<Todo>(newTodo);
@@ -33,6 +35,7 @@ namespace todoApi.Controllers
             return CreatedAtAction(nameof(AddTodos), new SuccessMessage(201, res));
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<SuccessMessage>> GetTodos(int pageSize=10, int PageNumber = 1){
             if(pageSize > maxPageSize){

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using todoApi.DBConnection;
 
@@ -11,9 +12,11 @@ using todoApi.DBConnection;
 namespace todoApi.Migrations
 {
     [DbContext(typeof(ApiDbConnection))]
-    partial class ApiDbConnectionModelSnapshot : ModelSnapshot
+    [Migration("20230901043415_passwordFieldAdded")]
+    partial class passwordFieldAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

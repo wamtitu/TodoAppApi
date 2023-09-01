@@ -76,3 +76,4 @@ C:\Users\lenovo\desktop\.NET\todoApi\todoApi\obj\Debug\net7.0\refint\todoApi.dll
 C:\Users\lenovo\desktop\.NET\todoApi\todoApi\obj\Debug\net7.0\todoApi.pdb
 C:\Users\lenovo\desktop\.NET\todoApi\todoApi\obj\Debug\net7.0\todoApi.genruntimeconfig.cache
 C:\Users\lenovo\desktop\.NET\todoApi\todoApi\obj\Debug\net7.0\ref\todoApi.dll
+C:\Users\lenovo\desktop\.NET\todoApi\todoApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
